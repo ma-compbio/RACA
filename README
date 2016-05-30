@@ -1,0 +1,121 @@
+
+          RACA (Reference-Assisted Chromosome Assembly)
+          =============================================
+
+1. How to compile?
+------------------
+
+     Just type 'make' to compile the RACA package.
+
+
+2. How to run?
+--------------
+
+    2.1 Configuration file
+
+        RACA requires a single configuration file as a parameter. 
+		The configuration file has all parameters that are needed for RACA.
+
+		Example dataset below has a sample configuration file 'params.txt' 
+		and all other parameter files which are self-explanatory.
+		(also refer to the data directory.) 
+        
+		Please read carefully the description of each configuration variable 
+		and modify them as needed. 
+
+
+    2.2 Run RACA 
+
+        There is a wrapper Perl script, 'Run_RACA.pl'. To run RACA, type as:
+
+            <path to RACA>/Run_RACA.pl <path to the configuration file> 
+ 
+3. Example dataset (Tibetan antelope assembly)
+----------------------------------------------
+
+	3.1 Download the dataset
+
+		Visit http://bioen-compbio.bioen.illinois.edu/RACA/ and click the 
+		link "Tibetan antelope (TA) data". Then you can download the file 
+		TAdata.tgz file. 
+
+	3.2 Compile the dataset
+
+		Go into the directory where you downloaded the TAdata.tgz file and run:
+
+		tar xvfz TAdata.tgz
+		cd TAdata/
+		make
+
+	3.3 Run RACA for the dataset
+
+		In the TAdata directory run:
+
+		<path to RACA>/Run_RACA.pl params.txt
+
+	3.4 Where are output files?
+
+		In the TAdata/Out_RACA directory.
+		
+
+4. What are produced?
+---------------------
+
+    In the output directory that is specified in the above configuration file, 
+	the following files are produced.
+
+    - rec_chrs.refined.txt 
+
+        This file contains the order and orientation of target scaffolds in 
+		each reconstructed RACA chromosome fragment. Each column is defined 
+		as:  
+
+            Column1: the RACA chromosome fragment id
+            Column2: start position (0-based) in the RACA chromosome fragment
+            Column3: end position (1-based) in the RACA chromosome fragment 
+            Column4: target scaffold id or 'GAPS'
+            Column5: start position (0-based) in the target scaffold
+            Column6: end position (1-based) in the target scaffold
+
+    - rec_chrs.<ref_spc>.segments.refined.txt
+
+        This file contains the mapping between the RACA chromosome fragments 
+		and the genome sequences of the reference species <ref_spc>. 
+
+    - ref_chrs.<tar_spc>.segments.refined.txt
+        
+        This file contains the mapping between the RACA chromosome fragments 
+		and the genome sequences of the target species <tar_spc>. 
+    
+    - ref_chrs.<out_spc>.segments.refined.txt
+        
+        This file contains the mapping between the RACA chromosome fragments 
+		and the genome sequences of the outgroup species <out_spc>. This file 
+		is created for each outgroup species. 
+
+    - rec_chrs.adjscores.txt
+
+        This file constins the adjacency scores that were used to reconstruct 
+		the RACA chromosome fragments. Each column is defined as:
+
+            Column1: the RACA chromosome fragment id
+            Column2: start position (1-based) in the RACA chromosome fragment
+            Column3: end position (1-based) in the RACA chromosome fragment 
+			Column4: the adjacency score
+
+    - rec_chrs.size.txt
+
+        This file contains the total size (the second column) and the total 
+		number of target scaffolds (the third column) that are placed in each 
+		RACA chromosome fragment (the first column).  
+
+    There are other intermediate files and directories in the output directory.
+	 They can be safely ignored.  
+
+4. How to ask questions?
+------------------------
+
+    Contact Jaebum Kim (jkim63@illinois.edu)
+
+
+

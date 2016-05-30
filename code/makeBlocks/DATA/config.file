@@ -1,0 +1,25 @@
+# netdir/species1/species2/net/chr?.net
+>netdir
+/projects/data/chainNet
+
+# chaindir/species1/species2/chain/chr?.chain
+>chaindir
+/projects/data/chainNet
+
+# species-name tag (0: ref-species, 1: descendents, 2: outgroup)
+>species
+umd3 0
+panHod2 1
+hg18 2
+
+# block resolution (bp)
+>resolution
+150000
+
+# number of chromosomes in a ref-species (up to the X chromosome, excluding the Y chromosome)
+>numchr
+30
+
+# phylogenetic tree with branch lengths. @ symbol indicates the target ancestor.
+>tree
+((umd3:0.1,panHod2:0.1)@:0.1,hg18:0.1)

@@ -1,0 +1,154 @@
+# File that has the lengths of insert libraries and their means and standard deviations estimated from read mapping.
+# Refer to the sample file 'insertsize_sd.txt'.
+#
+# File format:
+# Column1: insert library name
+# Column2: insert library size from experiments
+# Column3: mean size of insert library from read mapping
+# Column4: standrad deviation (-) of insert library size
+# Column5: standrad deviation (+) of insert library size
+# The positive and negative standard deviations could be the same
+#
+# Example:
+# PHOlcpDBADBAAPE 165 143 8   16
+# PHOlcpDAFDFAAPE 350 343 12  9
+# PHOlcpDAADEAAPE 358 360 16  11
+# PHOlcpDAFDFBAPE 353 354 10  9
+# ...
+INSERTLIBFILE=<path>/insertsize_sd.txt
+
+# Insert library size threshold for the normal directions of two end reads
+# Size < INSERTSIZETHR : + -
+# Otherwise : - +
+# Due to the difference of library creation for shor and long insert libraries
+# If you think your insert libraries don't care about this, then use very large or small values to use the same criteria for read directions 
+INSERTSIZETHR=1000 
+
+# Input directory that has the paired-end read mapping data
+# Refer to the file format by looling at the files in the TAreads directory.
+# Current version only support that format.
+# If you want to use any existing read alignment programs, you can simply convert the output from those alignment programs to the format that is supported by the current version of RACA.
+#
+# File format:
+# Column1: 1(first read in a pair) or 2(second read in a pair)
+# Column2: Read length
+# Column3: Mapped direction
+# Column4: Mapped scaffold name
+# Column5: Mapped scaffold position
+#
+# Example:
+# 1   44  -   Scaffold681 1608985
+# 2   44  +   Scaffold681 1625010
+# 1   44  -   Scaffold140 3922423
+# 2   44  +   Scaffold140 3939477
+# 1   44  -   Scaffold966 154923
+# 2   44  +   Scaffold966 175026
+# ...
+READMAPPINGDIR=<path>/TAreads
+
+# File that has the insert library name of each paired-end read mapping file in the $READMAPPING directory.
+# Refer to the sample file 'readmapping_lib.txt'.
+#
+# File format:
+# Column1: file name
+# Column2: insert library name
+#
+# Example:
+# 090625_I354_FC427HWAAXX_L7_PHOlcpDAADEDAPE.single.gz.position   PHOlcpDAADEDAPE
+# 090625_I354_FC427HWAAXX_L7_PHOlcpDAADEDAPE.soap.gz.position PHOlcpDAADEDAPE
+# 090628_I649_FC42CK5AAXX_L6_PHOlcpDABDWAAPE.single.gz.position   PHOlcpDABDWAAPE
+# 090628_I649_FC42CK5AAXX_L6_PHOlcpDABDWAAPE.soap.gz.position PHOlcpDABDWAAPE
+# 090628_I649_FC42CK5AAXX_L7_PHOlcpDABDWABPE.single.gz.position   PHOlcpDABDWABPE
+# ...
+READMAPPINGLIB=<path>/readmapping_lib.txt 
+
+# The number of processes for parallel execution
+NCPUS=10  
+
+# Size of target scaffolds
+# Refer to the sample file 'panHod2.size'.
+#
+# File format:
+# Column1: scaffold name
+# Column2: scaffold size
+# 
+# Example:
+# Scaffold2584    581
+# Scaffold2583    568
+# Scaffold2575    377
+# Scaffold2576    1571
+# Scaffold2593    641
+# Scaffold2523    994
+# Scaffold2572    146
+# ...
+SCFSIZEFILE=<path>/panHod2.size 
+
+# Prefix of target scaffold name
+# If the name of a scaffold is "Scaffold1221", then SCFPREFIX should be Scaffold.
+SCFPREFIX=Scaffold
+
+# Target scaffold sequences
+# This file contains all scaffold sequences
+SCFSEQFILE=<path>/panHod2.fa
+
+# Reference species
+REFSPC=umd3
+
+# Target species
+TARSPC=panHod2
+
+# Window size for estimating paired-end read coverage threshold
+WINDOWSIZE=1000
+
+# Output directory
+OUTPUTDIR=Out_RACA
+
+# Block resolution (bp)
+RESOLUTION=150000
+
+# The minimum percentage in a null distribution of P_ia(i,j) scores  
+# that are obtained from entire scaffolds
+# The actual P_ia(i,j) value in a null distribution that corresponds to 
+# MIN_INTRACOV_PERC is used as the cutoff threshold for P_ia(i,j)
+MIN_INTRACOV_PERC=5
+
+# Sometimes, SF adjacencies only have comparative genomic information without
+# paired-end read information because of the above MIN_INTRACOV_PERC threshold
+# or long distance between two SFs.
+# If this parameter is set (1), the SF adjacencies with both comparative
+# genomic information and paired-end read information are used in the
+# reconstruction
+IGNORE_ADJS_WO_READS=0
+
+# Newick tree file
+# Refer to the sample file 'tree.txt'.
+#
+# Example:
+# ((umd3:0.0832,panHod2@:0.0832):0.0832,hg18:0.2163);
+#
+# Please append '@' symbol at the end of a target species name (panHod2 above).
+#
+TREEFILE=<path>/tree.txt
+
+# Benchmark adjacency file
+# Refer to the sample file 'reliable_adjs.txt'.
+# If you don't have a benchmarking data for this file, then just specify an empty file. This will give an equal weight to the two components in the RACA's scoring function.
+#
+# File format:
+# Column1: SF1 coordinate
+# Column2: SF1 direction
+# Column3: SF2 coordinate
+# Column4: SF2 direction
+#
+# Example:
+# Scaffold494:2-1322227 + Scaffold1518:0-222515 -
+# Scaffold1052:0-974310 - Scaffold1144:0-339805 +
+# ...
+BENADJFILE=<path>/reliable_adjs.txt
+
+# Config and make files for syntenic fragment construction
+# Refer to the sample files 'config.SFs' and 'Makefile.SFs'.
+# You need to change settings in the sample configuration file (config.SFs) according to your data
+# You don't need to change anything in the Makefile.SFs.
+CONFIGSFSFILE=<path>/config.SFs
+MAKESFSFILE=<path>/Makefile.SFs
