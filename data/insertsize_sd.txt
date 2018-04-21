@@ -1,0 +1,25 @@
+# Column1: insert library name
+# Column2: insert library size from experiments
+# Column3: mean size of insert library from read mapping
+# Column4: standrad deviation (+) of insert library size	
+# Column5: standrad deviation (-) of insert library size
+# The positive and negative standard deviations could be the same 	
+PHOlcpDBADBAAPE	165	143	8	16
+PHOlcpDAFDFAAPE	350	343	12	9
+PHOlcpDAADEAAPE	358	360	16	11
+PHOlcpDAFDFBAPE	353	354	10	9
+PHOlcpDAADEBAPE	364	362	14	12
+PHOlcpDAADECAPE	386	381	25	13
+PHOlcpDAADEDAPE	393	375	13	12
+PHOlcpDAADIAAPE	497	490	16	14
+PHOlcpDAADIBAPE	542	538	16	13
+PHOlcpDAFDJAAPE	559	559	17	12
+PHOlcpDAFDKAAPE	565	555	15	14
+PHOlcpDABDWABPE	2350	2273	168	172
+PHOlcpDABDWAAPE	2730	2645	167	178
+PHOlcpDADDLBAPE	5000	5121	295	279
+PHOlcpDACDLAAPE	5340	5374	355	337
+PHOlcpDACDLACPE	9000	9525	1080	597
+PHOlcpDBADTAAPE	9370	9242	516	575
+PHOlcpDAADTAAPE	10000	9189	474	734
+PHOlcpDAADUAAPE	20000	16725	427	1465
