@@ -9,7 +9,7 @@
 #define MAXCHR		50000		// maximum number of chrom in one species
 //#define HSACHR		23		// number of chroms in human
 //#define HSACHR		30		// number of chroms in cow 
-#define MAXORDER	900000	// maximum number of order of signed permutation
+#define MAXORDER	90000	// maximum number of order of signed permutation
 
 //#define MINLEN		400000	// max resolution
 #define MINOVL		0.4
